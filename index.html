@@ -652,7 +652,8 @@
         /* =========================================
            Gemini AI Logic (Smart Text Assistant)
            ========================================= */
-        const BACKEND_URL = "http://127.0.0.1:8000";
+        const apiKey = "AIzaSyAVE8K__5cB4JY9TqNzdCIPXOJdjvhVvIs"; // API Key provided by execution environment
+        const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash:generateContent?key=${apiKey}`;
 
         async function processTextWithGemini() {
             const inputEl = document.getElementById('script-input');
@@ -674,21 +675,46 @@
             errorMsg.classList.add('hidden');
             setLoadingState(true);
 
+            const promptText = `
+                أنت خبير في اللغة العربية والتعليق الصوتي.
+                إليك هذا النص الذي سيقرأه معلق صوتي:
+                "${text}"
+                
+                المطلوب منك:
+                1. تشكيل النص لغوياً بالكامل وبدقة شديدة (الإعراب الصحيح) ليقرأه المعلق بدون أي أخطاء نحوية.
+                2. تحليل النص واقتراح النبرة أو اللون الصوتي الأنسب لقراءته، اختر فقط واحدة من: (وثائقي، إعلاني، تمثيلي/موشن جرافيك).
+                3. كتابة سبب قصير (جملة واحدة) لاختيارك لهذه النبرة.
+            `;
+
             const payload = {
-                text: text
+                contents: [{ parts: [{ text: promptText }] }],
+                generationConfig: {
+                    responseMimeType: "application/json",
+                    responseSchema: {
+                        type: "OBJECT",
+                        properties: {
+                            vocalizedText: { type: "STRING", description: "النص مشكّل بالكامل باللغة العربية للتعليق الصوتي" },
+                            suggestedTone: { type: "STRING", description: "واحدة من: وثائقي, إعلاني, تمثيلي" },
+                            reasoning: { type: "STRING", description: "سبب مقنع لاختيار النبرة بجملة واحدة" }
+                        },
+                        required: ["vocalizedText", "suggestedTone", "reasoning"]
+                    }
+                }
             };
 
             try {
-                const result = await fetchWithRetry(`${BACKEND_URL}/analyze`, payload);
+                const result = await fetchWithRetry(endpoint, payload);
+                const dataText = result.candidates?.[0]?.content?.parts?.[0]?.text;
 
-                if (result.detail) {
-                    throw new Error(result.detail);
+                if (dataText) {
+                    const parsedData = JSON.parse(dataText);
+                    displayResults(parsedData);
+                } else {
+                    throw new Error("No data returned");
                 }
-
-                displayResults(result);
             } catch (err) {
                 console.error(err);
-                errorMsg.textContent = err.message || "عذراً، حدث خطأ أثناء الاتصال بالذكاء الاصطناعي. يرجى المحاولة مرة أخرى.";
+                errorMsg.textContent = "عذراً، حدث خطأ أثناء الاتصال بالذكاء الاصطناعي. يرجى المحاولة مرة أخرى.";
                 errorMsg.classList.remove('hidden');
             } finally {
                 setLoadingState(false);
