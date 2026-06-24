@@ -17,8 +17,6 @@
 
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
-    <!-- WaveSurfer.js -->
-    <script src="https://unpkg.com/wavesurfer.js@7"></script>
 
     <!-- Tailwind Config for Custom Colors & Fonts -->
     <script>
@@ -111,22 +109,6 @@
         textarea::-webkit-scrollbar-thumb {
             background: rgba(245, 197, 24, 0.5);
             border-radius: 4px;
-        }
-
-        .skeleton {
-            background: linear-gradient(90deg, rgba(255, 255, 255, 0.05) 25%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.05) 75%);
-            background-size: 200% 100%;
-            animation: skeleton-loading 1.5s infinite;
-        }
-
-        @keyframes skeleton-loading {
-            0% {
-                background-position: 200% 0;
-            }
-
-            100% {
-                background-position: -200% 0;
-            }
         }
     </style>
 </head>
@@ -275,16 +257,15 @@
                                 <span class="text-xs text-brand-gold font-bold bg-brand-gold/10 px-2 py-1 rounded">MP3
                                     320kbps</span>
                             </div>
-                            <div class="relative w-full">
-                                <div id="waveform-audio1" class="w-full h-12"></div>
-                                <div class="flex justify-between items-center mt-1">
-                                    <span class="text-xs text-gray-400 w-8" id="curr-audio1">0:00</span>
-                                    <span class="text-xs text-gray-400 w-8 text-right" id="dur-audio1">0:00</span>
-                                </div>
+                            <div class="relative w-full flex items-center gap-3">
+                                <span class="text-xs text-gray-400 w-8" id="curr-audio1">0:00</span>
+                                <input type="range" id="seek-audio1" value="0" max="100" class="flex-1"
+                                    oninput="seekAudio('audio1', this.value)">
+                                <span class="text-xs text-gray-400 w-8 text-right" id="dur-audio1">0:00</span>
                             </div>
                         </div>
                     </div>
-                    <audio id="audio1" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+                    <audio id="audio1" src="static/Major_Mind-esv2-70p-bg-10p-music-10p.mp3"
                         ontimeupdate="updateProgress('audio1')" onloadedmetadata="setDuration('audio1')"></audio>
                 </div>
 
@@ -304,17 +285,16 @@
                                 <span class="text-xs text-brand-gold font-bold bg-brand-gold/10 px-2 py-1 rounded">MP3
                                     320kbps</span>
                             </div>
-                            <div class="relative w-full">
-                                <div id="waveform-audio2" class="w-full h-12"></div>
-                                <div class="flex justify-between items-center mt-1">
-                                    <span class="text-xs text-gray-400 w-8" id="curr-audio2">0:00</span>
-                                    <span class="text-xs text-gray-400 w-8 text-right" id="dur-audio2">0:00</span>
-                                </div>
+                            <div class="relative w-full flex items-center gap-3">
+                                <span class="text-xs text-gray-400 w-8" id="curr-audio2">0:00</span>
+                                <input type="range" id="seek-audio2" value="0" max="100" class="flex-1"
+                                    oninput="seekAudio('audio2', this.value)">
+                                <span class="text-xs text-gray-400 w-8 text-right" id="dur-audio2">0:00</span>
                             </div>
                         </div>
                     </div>
-                    <audio id="audio2" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"
-                        ontimeupdate="updateProgress('audio2')" onloadedmetadata="setDuration('audio2')"></audio>
+                    <audio id="audio2" src="static/2026-06-08 20.45.09.wav" ontimeupdate="updateProgress('audio2')"
+                        onloadedmetadata="setDuration('audio2')"></audio>
                 </div>
 
                 <!-- Audio Track 3 -->
@@ -333,17 +313,16 @@
                                 <span class="text-xs text-brand-gold font-bold bg-brand-gold/10 px-2 py-1 rounded">MP3
                                     320kbps</span>
                             </div>
-                            <div class="relative w-full">
-                                <div id="waveform-audio3" class="w-full h-12"></div>
-                                <div class="flex justify-between items-center mt-1">
-                                    <span class="text-xs text-gray-400 w-8" id="curr-audio3">0:00</span>
-                                    <span class="text-xs text-gray-400 w-8 text-right" id="dur-audio3">0:00</span>
-                                </div>
+                            <div class="relative w-full flex items-center gap-3">
+                                <span class="text-xs text-gray-400 w-8" id="curr-audio3">0:00</span>
+                                <input type="range" id="seek-audio3" value="0" max="100" class="flex-1"
+                                    oninput="seekAudio('audio3', this.value)">
+                                <span class="text-xs text-gray-400 w-8 text-right" id="dur-audio3">0:00</span>
                             </div>
                         </div>
                     </div>
-                    <audio id="audio3" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3"
-                        ontimeupdate="updateProgress('audio3')" onloadedmetadata="setDuration('audio3')"></audio>
+                    <audio id="audio3" src="static/2026-06-08 20.47.28.wav" ontimeupdate="updateProgress('audio3')"
+                        onloadedmetadata="setDuration('audio3')"></audio>
                 </div>
             </div>
         </div>
@@ -353,11 +332,6 @@
     <section id="ai-tools" class="relative z-10 py-20">
         <div class="max-w-5xl mx-auto px-6">
             <div class="text-center mb-12">
-                <div
-                    class="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/30 px-4 py-2 rounded-full mb-4">
-                    <i data-lucide="bot" class="text-blue-400 w-4 h-4"></i>
-                    <span class="text-blue-400 font-bold text-sm tracking-wide">مدعوم بالذكاء الاصطناعي من Google</span>
-                </div>
                 <h2 class="text-3xl md:text-4xl font-black mb-4">مساعد النصوص <span
                         class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-brand-gold">الذكي</span>
                     ✨</h2>
@@ -401,29 +375,14 @@
                         <p class="text-sm text-gray-500">ستظهر النتيجة المشكلة والنبرة المقترحة هنا</p>
                     </div>
 
-                    <!-- Skeleton Loading State -->
-                    <div id="skeleton-container"
-                        class="hidden absolute inset-0 z-20 p-6 flex flex-col gap-6 bg-brand-light/50 backdrop-blur-sm">
-                        <div class="flex justify-between items-start mb-4 pb-4 border-b border-white/10">
-                            <div class="w-1/3">
-                                <div class="h-3 w-20 skeleton rounded mb-2"></div>
-                                <div class="h-6 w-32 skeleton rounded"></div>
-                            </div>
-                            <div class="w-1/3 h-12 skeleton rounded-xl"></div>
-                        </div>
-                        <div class="h-6 w-48 skeleton rounded mb-3"></div>
-                        <div class="flex-1 skeleton rounded-xl"></div>
-                    </div>
-
                     <!-- Results -->
-                    <div id="results-container" class="flex-1 flex flex-col">
+                    <div class="flex-1 flex flex-col">
                         <div class="flex justify-between items-start mb-4 pb-4 border-b border-white/10">
                             <div>
                                 <p class="text-xs text-gray-400 uppercase tracking-wider mb-1">اللون الصوتي المقترح</p>
                                 <h3 id="suggested-tone" class="text-xl font-black text-brand-gold">--</h3>
                             </div>
-                            <div id="reasoning-box"
-                                class="bg-blue-500/10 p-3 rounded-xl border border-blue-500/20 max-w-[50%]">
+                            <div class="bg-blue-500/10 p-3 rounded-xl border border-blue-500/20 max-w-[50%]">
                                 <p id="tone-reasoning" class="text-xs text-blue-200 leading-relaxed">السبب سيظهر هنا.
                                 </p>
                             </div>
@@ -533,7 +492,7 @@
                     </div>
                 </a>
 
-                <a href="#"
+                <a href="https://api.whatsapp.com/send/?phone=201015549902"
                     class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center gap-4 hover:-translate-y-2 transition duration-300 hover:border-blue-500/50 group">
                     <div class="bg-blue-500/10 p-4 rounded-full group-hover:bg-blue-500/20 transition">
                         <i data-lucide="mail" class="w-8 h-8 text-blue-400"></i>
@@ -572,72 +531,69 @@
         document.getElementById('year').textContent = new Date().getFullYear();
 
         /* =========================================
-           Audio Player Logic (WaveSurfer.js)
+           Audio Player Logic
            ========================================= */
-        const waveSurfers = {};
-
-        function initWaveforms() {
-            const tracks = [
-                { id: 'audio1', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3' },
-                { id: 'audio2', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3' },
-                { id: 'audio3', url: 'https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3' },
-            ];
-
-            tracks.forEach(track => {
-                const ws = WaveSurfer.create({
-                    container: `#waveform-${track.id}`,
-                    waveColor: '#4b5563',
-                    progressColor: '#f5c518',
-                    cursorColor: '#f5c518',
-                    barWidth: 2,
-                    barGap: 3,
-                    barRadius: 3,
-                    height: 48,
-                    url: track.url,
-                });
-
-                ws.on('play', () => updateAudioUI(track.id, true));
-                ws.on('pause', () => updateAudioUI(track.id, false));
-                ws.on('finish', () => updateAudioUI(track.id, false));
-                ws.on('audioprocess', () => {
-                    document.getElementById(`curr-${track.id}`).textContent = formatTime(ws.getCurrentTime());
-                });
-                ws.on('ready', () => {
-                    document.getElementById(`dur-${track.id}`).textContent = formatTime(ws.getDuration());
-                });
-
-                waveSurfers[track.id] = ws;
-            });
-        }
+        let currentlyPlaying = null;
+        let currentBtn = null;
 
         function toggleAudio(id, btnElement) {
-            const ws = waveSurfers[id];
-            if (!ws) return;
-
-            // Stop all other tracks
-            Object.keys(waveSurfers).forEach(key => {
-                if (key !== id) {
-                    waveSurfers[key].pause();
+            const audio = document.getElementById(id);
+            if (currentlyPlaying && currentlyPlaying !== audio) {
+                currentlyPlaying.pause();
+                if (currentBtn) {
+                    currentBtn.innerHTML = '<i data-lucide="play" class="w-8 h-8 ml-1 fill-brand-dark"></i>';
                 }
-            });
+                lucide.createIcons();
+            }
 
-            if (ws.isPlaying()) {
-                ws.pause();
+            if (audio.paused) {
+                audio.play();
+                btnElement.innerHTML = '<i data-lucide="pause" class="w-8 h-8 fill-brand-dark"></i>';
+                currentlyPlaying = audio;
+                currentBtn = btnElement;
             } else {
-                ws.play();
+                audio.pause();
+                btnElement.innerHTML = '<i data-lucide="play" class="w-8 h-8 ml-1 fill-brand-dark"></i>';
+                currentlyPlaying = null;
+                currentBtn = null;
+            }
+            lucide.createIcons();
+        }
+
+        function updateProgress(id) {
+            const audio = document.getElementById(id);
+            const seekSlider = document.getElementById(`seek-${id}`);
+            const currentTimeLabel = document.getElementById(`curr-${id}`);
+
+            if (!isNaN(audio.duration)) {
+                const progressPercent = (audio.currentTime / audio.duration) * 100;
+                seekSlider.value = progressPercent;
+                currentTimeLabel.textContent = formatTime(audio.currentTime);
+            }
+
+            if (audio.currentTime === audio.duration) {
+                const btnElement = document.querySelector(`button[onclick="toggleAudio('${id}', this)"]`);
+                btnElement.innerHTML = '<i data-lucide="play" class="w-8 h-8 ml-1 fill-brand-dark"></i>';
+                lucide.createIcons();
+                currentlyPlaying = null;
+                currentBtn = null;
             }
         }
 
-        function updateAudioUI(id, isPlaying) {
-            const btn = document.querySelector(`button[onclick="toggleAudio('${id}', this)"]`);
-            if (!btn) return;
-
-            if (isPlaying) {
-                btn.innerHTML = '<i data-lucide="pause" class="w-8 h-8 fill-brand-dark"></i>';
-            } else {
-                btn.innerHTML = '<i data-lucide="play" class="w-8 h-8 ml-1 fill-brand-dark"></i>';
+        function setDuration(id) {
+            const audio = document.getElementById(id);
+            const durationLabel = document.getElementById(`dur-${id}`);
+            if (!isNaN(audio.duration)) {
+                durationLabel.textContent = formatTime(audio.duration);
             }
-            lucide.createIcons();
+        }
+
+        function seekAudio(id, value) {
+            const audio = document.getElementById(id);
+            if (!isNaN(audio.duration)) {
+                const seekTo = audio.duration * (value / 100);
+                audio.currentTime = seekTo;
+            }
         }
 
         function formatTime(seconds) {
@@ -646,13 +602,10 @@
             return `${min}:${sec < 10 ? '0' : ''}${sec}`;
         }
 
-        // Initialize waveforms on load
-        window.addEventListener('DOMContentLoaded', initWaveforms);
-
         /* =========================================
            Gemini AI Logic (Smart Text Assistant)
            ========================================= */
-        const apiKey = "AIzaSyAVE8K__5cB4JY9TqNzdCIPXOJdjvhVvIs"; // API Key provided by execution environment
+        const apiKey = "AIzaSyDFg-JZ39ayGDKZ0yKGApLE1JxG3wDI-Oc"; // API Key provided by execution environment
         const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent?key=${apiKey}`;
 
         async function processTextWithGemini() {
@@ -744,9 +697,6 @@
             const btnIcon = document.getElementById('btn-icon');
             const btnSpinner = document.getElementById('btn-spinner');
             const btn = document.getElementById('analyze-btn');
-            const overlay = document.getElementById('output-overlay');
-            const skeleton = document.getElementById('skeleton-container');
-            const results = document.getElementById('results-container');
 
             if (isLoading) {
                 btnText.textContent = "جاري التحليل...";
@@ -754,19 +704,12 @@
                 btnSpinner.classList.remove('hidden');
                 btn.disabled = true;
                 btn.classList.add('opacity-80', 'cursor-not-allowed');
-
-                overlay.classList.add('hidden');
-                results.classList.add('hidden');
-                skeleton.classList.remove('hidden');
             } else {
                 btnText.textContent = "تحليل وتشكيل النص ✨";
                 btnIcon.classList.remove('hidden');
                 btnSpinner.classList.add('hidden');
                 btn.disabled = false;
                 btn.classList.remove('opacity-80', 'cursor-not-allowed');
-
-                skeleton.classList.add('hidden');
-                results.classList.remove('hidden');
             }
         }
 
