@@ -265,7 +265,7 @@
                             </div>
                         </div>
                     </div>
-                    <audio id="audio1" src="static/Major_Mind-esv2-70p-bg-10p-music-10p.mp3"
+                    <audio id="audio1" src="static/sea_deeps-03-esv2-70p-bg-10p-music-10p.wav"
                         ontimeupdate="updateProgress('audio1')" onloadedmetadata="setDuration('audio1')"></audio>
                 </div>
 
@@ -279,7 +279,7 @@
                         <div class="flex-1 w-full">
                             <div class="flex justify-between items-end mb-2">
                                 <div>
-                                    <h3 class="font-bold text-lg">الرد الآلي والإعلانات (IVR/Premium)</h3>
+                                    <h3 class="font-bold text-lg">الرد الآلي والإعلانات</h3>
                                     <p class="text-sm text-gray-400">صوت فخم وموثوق للشركات</p>
                                 </div>
                                 <span class="text-xs text-brand-gold font-bold bg-brand-gold/10 px-2 py-1 rounded">MP3
@@ -293,8 +293,8 @@
                             </div>
                         </div>
                     </div>
-                    <audio id="audio2" src="static/2026-06-08 20.45.09.wav" ontimeupdate="updateProgress('audio2')"
-                        onloadedmetadata="setDuration('audio2')"></audio>
+                    <audio id="audio2" src="static/ivr-02-esv2-70p-bg-10p-music-10p.wav"
+                        ontimeupdate="updateProgress('audio2')" onloadedmetadata="setDuration('audio2')"></audio>
                 </div>
 
                 <!-- Audio Track 3 -->
@@ -308,7 +308,7 @@
                             <div class="flex justify-between items-end mb-2">
                                 <div>
                                     <h3 class="font-bold text-lg">الأداء التمثيلي والموشن جرافيك</h3>
-                                    <p class="text-sm text-gray-400">مرونة في الطبقات (مثل: مهرج الملك)</p>
+                                    <p class="text-sm text-gray-400">مرونة في الطبقات</p>
                                 </div>
                                 <span class="text-xs text-brand-gold font-bold bg-brand-gold/10 px-2 py-1 rounded">MP3
                                     320kbps</span>
@@ -321,8 +321,8 @@
                             </div>
                         </div>
                     </div>
-                    <audio id="audio3" src="static/2026-06-08 20.47.28.wav" ontimeupdate="updateProgress('audio3')"
-                        onloadedmetadata="setDuration('audio3')"></audio>
+                    <audio id="audio3" src="static/major_mind-esv2-70p-bg-10p-music-10p.mp3"
+                        ontimeupdate="updateProgress('audio3')" onloadedmetadata="setDuration('audio3')"></audio>
                 </div>
             </div>
         </div>
@@ -414,7 +414,7 @@
         <div class="max-w-5xl mx-auto px-6 text-center">
             <h2 class="text-3xl md:text-4xl font-black mb-4">جودة <span class="text-brand-gold">استوديو</span>..
                 وميزانية تناسبك</h2>
-            <p class="text-gray-400 mb-10 max-w-2xl mx-auto text-lg">لا تدع المظهر الفخم يقلقك! أنا أتفهم تماماً
+            <p class="text-gray-400 mb-10 max-w-2xl mx-auto text-lg">لا تدع المظهر يقلقك! أنا أتفهم تماماً
                 احتياجات صناع المحتوى ومحرري الفيديو، ولذلك صممت خطط تسعير اقتصادية ومريحة جداً للمشاريع المستمرة.</p>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-right">
@@ -492,7 +492,7 @@
                     </div>
                 </a>
 
-                <a href="#"
+                <a href="mailto:zyadsamy2005@gmail.com"
                     class="glass-panel p-6 rounded-2xl flex flex-col items-center justify-center gap-4 hover:-translate-y-2 transition duration-300 hover:border-blue-500/50 group">
                     <div class="bg-blue-500/10 p-4 rounded-full group-hover:bg-blue-500/20 transition">
                         <i data-lucide="mail" class="w-8 h-8 text-blue-400"></i>
@@ -509,7 +509,7 @@
                         <i data-lucide="shopping-cart" class="w-8 h-8 text-brand-gold"></i>
                     </div>
                     <div>
-                        <h4 class="font-bold text-lg">خمسات / كفيل</h4>
+                        <h4 class="font-bold text-lg">سونديلز</h4>
                         <p class="text-sm text-gray-400">اطلب خدمة مصغرة</p>
                     </div>
                 </a>
@@ -605,8 +605,8 @@
         /* =========================================
            Gemini AI Logic (Smart Text Assistant)
            ========================================= */
-        const apiKey = "AIzaSyDFg-JZ39ayGDKZ0yKGApLE1JxG3wDI-Oc"; // API Key provided by execution environment
-        const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent?key=${apiKey}`;
+        const apiKey = "AQ.Ab8RN6KAeTF5d3YSNTTLgyLxTRWblpcv3JH4sqnsRj9ykw_fMg"; // API Key provided by execution environment
+        const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemma-4-26B-A4B-it:generateContent?key=${apiKey}`;
 
         async function processTextWithGemini() {
             const inputEl = document.getElementById('script-input');
